@@ -1,0 +1,49 @@
+body {
+    font-family: 'Cute Font', sans-serif;
+    background-color: #e3b8ae;
+    color: #4f6659;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    background-color: #b84c65;
+    padding: 20px;
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 50px;
+}
+
+h1 {
+    color: #fff;
+}
+
+.couple-photos img, .gallery img {
+    width: 30%;
+    margin: 10px;
+}
+
+.map-section img {
+    width: 100%;
+}
+
+.countdown {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+.rsvp, .upload, .accommodation-list {
+    text-align: center;
+    margin: 20px;
+}
+
+.accommodation-list ul {
+    list-style: none;
+    padding: 0;
+}

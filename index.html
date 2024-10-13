@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="Logo" class="logo">
+        <h1>Welcome to Our Wedding</h1>
+    </header>
+
+    <section class="couple-photos">
+        <img src="images/couple1.jpg" alt="Couple Photo 1">
+        <img src="images/couple2.jpg" alt="Couple Photo 2">
+        <img src="images/couple3.jpg" alt="Couple Photo 3">
+    </section>
+
+    <section class="map-section">
+        <a href="https://goo.gl/maps/example" target="_blank">
+            <img src="images/map.jpg" alt="Wedding Location Map">
+        </a>
+    </section>
+
+    <section class="countdown">
+        <h2>Countdown to Our Wedding</h2>
+        <p id="countdown-timer"></p>
+    </section>
+
+    <script>
+        // Countdown script
+        var weddingDate = new Date("Jan 1, 2026 00:00:00").getTime();
+        var countdownFunction = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = weddingDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown-timer").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown-timer").innerHTML = "We're Married!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
