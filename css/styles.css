@@ -47,3 +47,95 @@ h1 {
     list-style: none;
     padding: 0;
 }
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #4f6659;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Main section layout */
+.main-section {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    justify-content: space-between;
+}
+
+.left-section, .right-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.left-section img {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.right-section img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Info boxes section */
+.info-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.box {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #9fada5;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.box h2 {
+    margin-bottom: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-section {
+        flex-direction: column;
+    }
+
+    .info-boxes {
+        flex-direction: column;
+    }
+}
+
