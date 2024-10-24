@@ -20,26 +20,42 @@
         </nav>
     </header>
 
-    <section class="couple-photos">
-        <img src="images/couple1.jpg" alt="Couple Photo 1">
-        <img src="images/couple2.jpg" alt="Couple Photo 2">
-        <img src="images/couple3.jpg" alt="Couple Photo 3">
+    <!-- Main Section -->
+    <section class="main-section">
+        <!-- Left Side: Couple Photos -->
+        <div class="left-section">
+            <img src="images/couple1.jpg" alt="Couple Photo 1">
+            <img src="images/couple2.jpg" alt="Couple Photo 2">
+            <img src="images/couple3.jpg" alt="Couple Photo 3">
+        </div>
+
+        <!-- Right Side: Wedding Location Map -->
+        <div class="right-section">
+            <a href="https://goo.gl/maps/example" target="_blank">
+                <img src="images/map.jpg" alt="Wedding Location Map">
+            </a>
+        </div>
     </section>
 
-    <section class="map-section">
-        <a href="https://goo.gl/maps/example" target="_blank">
-            <img src="images/map.jpg" alt="Wedding Location Map">
-        </a>
+    <!-- Info Boxes Section -->
+    <section class="info-boxes">
+        <div class="box countdown">
+            <h2>Countdown to Our Wedding</h2>
+            <p id="countdown-timer"></p>
+        </div>
+        <div class="box country-map">
+            <h2>Guests From Around the World</h2>
+            <img src="images/countries-map.jpg" alt="Map Showing Countries">
+        </div>
+        <div class="box guest-count">
+            <h2>Number of Guests Attending</h2>
+            <p>We have <span id="guest-count">150</span> confirmed guests!</p>
+        </div>
     </section>
 
-    <section class="countdown">
-        <h2>Countdown to Our Wedding</h2>
-        <p id="countdown-timer"></p>
-    </section>
-
+    <!-- Countdown Script -->
     <script>
-        // Countdown script
-        var weddingDate = new Date("Jan 25, 2025 00:00:00").getTime();
+        var weddingDate = new Date("Jan 3, 2026 14:00:00").getTime();
         var countdownFunction = setInterval(function() {
             var now = new Date().getTime();
             var distance = weddingDate - now;
