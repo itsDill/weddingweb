@@ -1,232 +1,188 @@
+/* General Reset */
+* {
+    margin: 0; /* Removes default margin */
+    padding: 0; /* Removes default padding */
+    box-sizing: border-box; /* Includes padding and border in element’s dimensions */
+}
+
+/* Body Styling */
 body {
-    font-family: 'Cute Font', sans-serif;
-    background-color: #e3b8ae;
-    color: #4f6659;
-    margin: 0;
-    padding: 0;
+    font-family: 'Cute Font', sans-serif; /* Sets a playful font for the entire body */
+    background-color: #e3b8ae; /* Light blush background */
+    color: #4f6659; /* Olive brown text color */
 }
 
+/* Header Styling */
 header {
+    position: relative; /* Allows absolute positioning for child elements */
     text-align: center;
-    background-color: #b84c65;
-    padding: 20px;
+    background-color: #b84c65; /* Blush pink background */
+    padding: 20px; /* Adds space inside the header */
 }
 
-.logo {
+header .logo {
     position: absolute;
     top: 10px;
     left: 20px;
-    width: 50px;
+    width: 100px; /* Logo size */
 }
 
-h1 {
-    color: #fff;
-}
-
-.couple-photos img, .gallery img {
-    width: 30%;
-    margin: 10px;
-}
-
-.map-section img {
-    width: 100%;
-}
-
-.countdown {
-    text-align: center;
-    font-size: 2em;
-    margin-top: 20px;
-}
-
-.rsvp, .upload, .accommodation-list {
-    text-align: center;
-    margin: 20px;
-}
-
-.accommodation-list ul {
-    list-style: none;
-    padding: 0;
-}
-/* General styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-header {
-    background-color: #4f6659;
-    padding: 20px;
-    text-align: center;
+header h1 {
     color: white;
+    font-size: 2em; /* Main header font size */
 }
 
-.logo {
-    max-width: 150px;
-    display: block;
-    margin: 0 auto;
-}
-
+/* Navigation Styling */
 nav ul {
-    list-style: none;
-    padding: 0;
+    list-style: none; /* Removes bullets */
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: center; /* Centers nav items */
+    gap: 20px; /* Space between nav items */
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
+    font-size: 1rem;
 }
 
-/* Main section layout */
+nav ul li a:hover {
+    text-decoration: underline; /* Underlines on hover */
+}
+
+/* Welcome Message Styling */
+.header-message {
+    color: #4f6659; /* Olive brown text */
+    font-size: 1.5em;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Main Section Layout */
 .main-section {
     display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
-    justify-content: space-between;
-}
-
-.left-section, .right-section {
-    flex: 1;
-    min-width: 300px;
-}
-
-.left-section img {
-    width: 100%;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-.right-section img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-/* Info boxes section */
-.info-boxes {
-    display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
     justify-content: space-between;
     margin: 20px;
 }
 
-.box {
-    flex: 1;
-    min-width: 300px;
-    padding: 20px;
-    margin: 10px;
-    background-color: #9fada5;
-    color: white;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.box h2 {
-    margin-bottom: 10px;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .main-section {
-        flex-direction: column;
-    }
-
-    .info-boxes {
-        flex-direction: column;
-    }
-}
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-}
-
-header {
-    background-color: #4f6659;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.logo {
-    width: 100px;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Main Section */
-.main-section {
-    display: flex;
-    justify-content: space-between;
-    margin: 40px;
-    gap: 20px;
-}
-
-.left-section img {
-    width: 100%;
-    margin-bottom: 15px;
-}
-
+/* Left Section for Slideshow */
 .left-section {
-    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.right-section img {
+.slideshow-container {
+    position: relative;
     width: 100%;
     max-width: 500px;
 }
 
-.right-section {
-    flex: 1;
+.slideshow-container img {
+    width: 100%;
+    border-radius: 8px; /* Rounds image corners */
+    display: none; /* Hides images by default */
 }
 
-/* Info Boxes Section */
-.info-boxes {
+.slideshow-container img.active {
+    display: block; /* Shows the current slide */
+}
+
+/* Arrow Buttons for Manual Slideshow Navigation */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2em; /* Large arrow size */
+    color: #4f6659;
+    cursor: pointer;
+    user-select: none;
+}
+
+.arrow.left {
+    left: -40px; /* Positions left arrow outside image */
+}
+
+.arrow.right {
+    right: -40px; /* Positions right arrow outside image */
+}
+
+/* Right Section: Countdown Info Boxes */
+.right-section {
     display: flex;
-    justify-content: space-around;
-    margin: 40px;
+    flex-direction: column;
     gap: 20px;
 }
 
-.info-boxes .box {
-    background-color: white;
-    border: 2px solid #4f6659;
+/* Countdown Boxes */
+.info-boxes {
+    display: flex;
+    flex-wrap: wrap; /* Wraps boxes on smaller screens */
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: #9fada5; /* Light olive */
+    color: white;
     padding: 20px;
+    border-radius: 8px;
     text-align: center;
-    width: 30%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.info-boxes .box img {
-    width: 100%;
-    max-width: 300px;
+.box h2 {
+    font-size: 0.9em; /* Smaller font for box titles */
+    margin-bottom: 5px;
 }
 
-.countdown p {
-    font-size: 24px;
-    color: #b84c65;
+/* Second Section Layout */
+.second-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
 }
 
+.medium-image {
+    width: 60%; /* Medium image size */
+    border-radius: 8px;
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.map-image {
+    width: 200px; /* Map image size */
+    border-radius: 8px;
+}
+
+.location-text {
+    font-size: 1.2em; /* Larger font for location text */
+    text-align: center;
+    color: #4f6659; /* Olive brown text */
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+    .main-section, .second-section {
+        flex-direction: column; /* Stacks sections vertically */
+        align-items: center;
+    }
+
+    .info-boxes {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
