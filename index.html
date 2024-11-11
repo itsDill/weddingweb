@@ -166,7 +166,7 @@
     <section class="second-section">
         <img src="images/medium-size.jpeg" alt="Medium Image" class="medium-image">
         <div class="location-info">
-            <img src="images/map.jpeg" alt="Map" class="map-image">
+            <img src="images/D7A9A7AD-4764-4071-833B-2FCC2D866478.png" alt="Map" class="map-image">
             <p class="location-text">Our wedding will be held at [Venue Location]</p>
         </div>
     </section>
@@ -179,9 +179,9 @@
             var distance = weddingDate - now;
 
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor(distance / (1000 * 60 * 60)); // Total hours
-            var minutes = Math.floor(distance / (1000 * 60)); // Total minutes
-            var seconds = Math.floor(distance / 1000); // Total seconds
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             document.getElementById("days-count").innerHTML = days;
             document.getElementById("hours-count").innerHTML = hours;
