@@ -5,43 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Wedding</title>
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        /* Slideshow Styles */
-        .slideshow {
-            position: relative;
-            width: 100%;
-            max-width: 650px; /* You can adjust this size */
-            margin: auto;
-            overflow: hidden;
-        }
-
-        .slide {
-            display: none;
-            width: 100%;
-            height: 400px; /* Adjust the height to make images uniform */
-            object-fit: cover; /* Ensures images cover the area without distortion */
-        }
-
-        /* Navigation Arrows */
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 24px;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .arrow-left {
-            left: 0;
-        }
-
-        .arrow-right {
-            right: 0;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -59,50 +22,34 @@
 
     <!-- Main Section -->
     <section class="main-section">
-        <!-- Left Side: Slideshow -->
+        <!-- Left Side: Couple Photos -->
         <div class="left-section">
-            <div class="slideshow">
-                <img src="images/IMG_3931 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5234 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5904 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/C17D691C-F527-4CA0-8B7D-98B687B37B18_1_105_c.jpeg" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5907 2.JPG" alt="Couple Photo" class="slide">
-
-                <!-- Navigation Arrows -->
-                <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-                <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
-            </div>
+            <img src="images/0EA7E903-3EC8-442A-B3E3-41CD34CFC5F1_1_105_c.jpeg" alt="Couple Photo 1">
+            <img src="images/50BDEE4A-86D8-48E2-A2D6-8B09F707A679_1_105_c.jpeg" alt="Couple Photo 2">
+            <img src="images/C17D691C-F527-4CA0-8B7D-98B687B37B18_1_105_c.jpeg" alt="Couple Photo 3">
         </div>
 
-        <!-- Right Side: Info Boxes -->
+        <!-- Right Side: Wedding Location Map -->
         <div class="right-section">
-            <div class="info-boxes">
-                <div class="box">
-                    <h2>Days Until Wedding</h2>
-                    <p id="days-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Hours Until Wedding</h2>
-                    <p id="hours-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Minutes Until Wedding</h2>
-                    <p id="minutes-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Seconds Until Wedding</h2>
-                    <p id="seconds-count">0</p>
-                </div>
-            </div>
+            <a href="https://maps.app.goo.gl/jDXmXjKzBZZQUWsZ9" target="_blank">
+                <img src="images/D7A9A7AD-4764-4071-833B-2FCC2D866478.png" alt="Wedding Location Map">
+            </a>
         </div>
     </section>
 
-    <!-- Second Section -->
-    <section class="second-section">
-        <img src="images/" alt="Medium Image" class="medium-image">
-        <div class="location-info">
-            <img src="images/D7A9A7AD-4764-4071-833B-2FCC2D866478.png" alt="Map" class="map-image">
-            <p class="location-text">Our wedding will be held at [Venue Location]</p>
+    <!-- Info Boxes Section -->
+    <section class="info-boxes">
+        <div class="box countdown">
+            <h2>Countdown to Our Wedding</h2>
+            <p id="countdown-timer"></p>
+        </div>
+        <div class="box country-map">
+            <h2>Guests From Around the World</h2>
+            <img src="images/F8B0FBC7-CBE5-4BC6-87B8-85ABFF5F6C52.png" alt="Map Showing Countries">
+        </div>
+        <div class="box guest-count">
+            <h2>Number of Guests Attending</h2>
+            <p>We have <span id="guest-count">150</span> confirmed guests!</p>
         </div>
     </section>
 
@@ -118,48 +65,14 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("days-count").innerHTML = days;
-            document.getElementById("hours-count").innerHTML = hours;
-            document.getElementById("minutes-count").innerHTML = minutes;
-            document.getElementById("seconds-count").innerHTML = seconds;
+            document.getElementById("countdown-timer").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
 
             if (distance < 0) {
                 clearInterval(countdownFunction);
-                document.getElementById("days-count").innerHTML = "0";
-                document.getElementById("hours-count").innerHTML = "0";
-                document.getElementById("minutes-count").innerHTML = "0";
-                document.getElementById("seconds-count").innerHTML = "0";
+                document.getElementById("countdown-timer").innerHTML = "We're Married!";
             }
         }, 1000);
-    </script>
-
-
-    <!-- Slideshow Script -->
-    <script>
-        let slideIndex = 0;
-        const slides = document.querySelectorAll(".slide");
-
-        // Show the current slide
-        function showSlide() {
-            slides.forEach((slide, index) => {
-                slide.style.display = (index === slideIndex) ? "block" : "none";
-            });
-        }
-
-        // Change slide based on direction (-1 for previous, 1 for next)
-        function changeSlide(direction) {
-            slideIndex += direction;
-            if (slideIndex < 0) {
-                slideIndex = slides.length - 1;  // Go to the last slide if at the start
-            }
-            if (slideIndex >= slides.length) {
-                slideIndex = 0;  // Go to the first slide if at the end
-            }
-            showSlide();
-        }
-
-        // Initialize the slideshow by showing the first image
-        showSlide();
     </script>
 </body>
 </html>
