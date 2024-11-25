@@ -248,3 +248,97 @@ nav ul li a:hover {
         font-size: 1.5em; /* Adjust arrow size */
     }
 }
+/* Luxury Destinations Section */
+.luxury-destinations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between boxes */
+    padding: 40px;
+    background-color: #222; /* Matches the dark theme */
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.destination {
+    background-color: #333; /* Dark box background */
+    border: 1px solid #444; /* Subtle border */
+    border-radius: 10px;
+    overflow: hidden; /* Ensures content stays within the box */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for a luxury feel */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destination:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.destination img {
+    width: 100%; /* Ensures image fills the box */
+    height: 200px; /* Fixed height for consistent layout */
+    object-fit: contain; /* Ensures image fits nicely */
+    border-bottom: 2px solid #444; /* Divider line under image */
+}
+
+.destination h2 {
+    margin: 15px;
+    font-size: 1.4em;
+    color: #ffd700; /* Gold color for luxury feel */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.luxury-destinations a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
+}
+h1 {
+    text-align: center; /* Centers the text horizontally */
+    margin: 20px 0; /* Adds some vertical spacing */
+    color: #ffd700; /* Matches the luxury theme */
+}
+.content p {
+    text-align: center; /* Centers the text horizontally */
+    margin: 10px 0; /* Adds some vertical spacing */
+    color: #f0f0f0; /* Ensures readability on a dark background */
+    font-size: 1em; /* Adjusts font size for clarity */
+    line-height: 1.5; /* Improves readability by spacing out lines */
+}
+.main-image {
+    max-width: 80%; /* Ensures the image doesn't exceed 80% of the container's width */
+    height: auto; /* Maintains the aspect ratio */
+    display: block; /* Centers the image */
+    margin: 20px auto; /* Adds spacing and centers the image horizontally */
+    border-radius: 10px; /* Optional: Rounds the corners for a polished look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Optional: Adds a shadow for emphasis */
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+#content {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
