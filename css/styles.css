@@ -186,3 +186,65 @@ nav ul li a:hover {
         flex-wrap: wrap;
     }
 }
+/* Navigation Styling */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Slideshow Container */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 16 / 9; /* Keeps a consistent aspect ratio */
+    overflow: hidden;
+}
+
+.slideshow-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; /* Hides images by default */
+}
+
+.slideshow-container img.active {
+    display: block; /* Shows the current slide */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5em; /* Adjust header font size for smaller screens */
+    }
+
+    .main-section {
+        flex-direction: column; /* Stack left and right sections */
+    }
+
+    .info-boxes {
+        flex-direction: column;
+        align-items: center; /* Center countdown boxes */
+    }
+
+    .slideshow-container {
+        max-width: 100%; /* Ensure slideshow takes full width on mobile */
+    }
+
+    .arrow {
+        font-size: 1.5em; /* Adjust arrow size */
+    }
+}
