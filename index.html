@@ -7,111 +7,148 @@
     <link rel="stylesheet" href="css/styles.css">
     <style>
         /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-        header {
-            text-align: center;
-            padding: 20px;
-        }
+header {
+    text-align: center;
+    padding: 20px;
+}
 
-        .logo {
-            max-width: 150px;
-        }
+.logo {
+    max-width: 150px;
+}
 
-        .main-section {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-        }
+.main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
 
-        .left-section, .right-section {
-            width: 48%;
-        }
+.left-section, .right-section {
+    width: 48%;
+}
 
-        /* Slideshow Styles */
-        .slideshow {
-            position: relative;
-            width: 100%;
-            max-width: 600px; /* You can adjust this size */
-            height: 400px; /* Same as the medium image */
-            margin: auto;
-            overflow: hidden;
-        }
+/* Slideshow Styles */
+.slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* You can adjust this size */
+    height: 400px; /* Same as the medium image */
+    margin: auto;
+    overflow: hidden;
+}
 
-        .slide {
-            display: none;
-            width: 100%;
-            height: 100%; /* Ensure full coverage */
-            object-fit: cover; /* Ensures images cover the area without distortion */
-        }
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%; /* Ensure full coverage */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+}
 
-        /* Navigation Arrows */
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 24px;
-            padding: 10px;
-            cursor: pointer;
-        }
+/* Navigation Arrows */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+}
 
-        .arrow-left {
-            left: 0;
-        }
+.arrow-left {
+    left: 0;
+}
 
-        .arrow-right {
-            right: 0;
-        }
+.arrow-right {
+    right: 0;
+}
 
-        /* Centering the heading */
-        .subheading {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
+/* Centering the heading */
+.subheading {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
 
-        /* Info Boxes Styles */
-        .info-boxes {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
+/* Info Boxes Styles */
+.info-boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
-        .box {
-            width: 45%;
-            padding: 15px;
-            margin-top: 20px;
-            background-color: #f1f1f1;
-            text-align: center;
-            border-radius: 5px;
-        }
+.box {
+    width: 45%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #f1f1f1;
+    text-align: center;
+    border-radius: 5px;
+}
 
-        /* Second Section Styles */
-        .second-section {
-            text-align: center;
-            padding: 20px;
-        }
+/* Second Section Styles */
+.second-section {
+    text-align: center;
+    padding: 20px;
+}
 
-        .medium-image {
-            max-width: 100%;
-            height: auto;
-        }
+.medium-image {
+    max-width: 100%;
+    height: auto;
+}
 
-        .map-image {
-            width: 100%;
-            height: auto;
-        }
+.map-image {
+    width: 100%;
+    height: auto;
+}
 
-        .location-info {
-            margin-top: 20px;
-        }
+.location-info {
+    margin-top: 20px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .main-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+    }
+
+    .info-boxes {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .box {
+        width: 90%;
+        margin-top: 10px;
+    }
+
+    .slideshow {
+        height: auto; /* Adjust slideshow height for smaller screens */
+    }
+
+    .arrow {
+        font-size: 18px;
+        padding: 5px;
+    }
+
+    .subheading {
+        font-size: 18px;
+    }
+}
+
     </style>
 </head>
 <body>
