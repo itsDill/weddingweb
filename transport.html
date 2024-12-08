@@ -9,12 +9,14 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background: url('images/background1111.png') no-repeat center center fixed; /* Background image */
+            background-size: cover; /* Scale the image to cover the page */
         }
 
         header {
             text-align: center;
             padding: 20px;
-            background-color: #b84c65;
+            background-color: rgba(184, 76, 101, 0.9); /* Semi-transparent header */
             color: white;
         }
 
@@ -36,30 +38,46 @@
 
         .icon {
             position: absolute;
-            width: 40px;
+            animation-timing-function: linear;
+        }
+
+        /* Size adjustments for individual icons */
+        .icon.route1 {
+            width: 50px; /* Size of car */
+            animation: route1 10s linear infinite;
+        }
+
+        .icon.route2 {
+            width: 100px; /* Size of train */
+            animation: route2 12s linear infinite;
+        }
+
+        .icon.route3 {
+            width: 100px; /* Size of plane */
+            animation: route3 14s linear infinite;
         }
 
         /* First route animation */
         @keyframes route1 {
             0% {
-                top: 80%;
-                left: 10%;
-            }
-            25% {
-                top: 70%;
-                left: 25%;
-            }
-            50% {
-                top: 50%;
+                top: 65%;
                 left: 40%;
             }
-            75% {
+            25% {
+                top: 45%;
+                left: 50%;
+            }
+            50% {
                 top: 30%;
+                left: 50%;
+            }
+            75% {
+                top: 10%;
                 left: 60%;
             }
             100% {
-                top: 10%;
-                left: 90%;
+                top: 9%;
+                left: 85%;
             }
         }
 
@@ -67,23 +85,23 @@
         @keyframes route2 {
             0% {
                 top: 60%;
-                left: 60%;
+                left: 40%;
             }
             25% {
-                top: 70%;
-                left: 60%;
+                top: 50%;
+                left: 45%;
             }
             50% {
-                top: 80%;
-                left: 60%;
+                top: 30%;
+                left: 45%;
             }
             75% {
-                top: 90%;
-                left: 80%;
+                top: 20%;
+                left: 50%;
             }
             100% {
-                top: 100%;
-                left: 85%;
+                top: 10%;
+                left: 55%;
             }
         }
 
@@ -110,25 +128,13 @@
                 left: 50%;
             }
         }
-
-        /* Assign animations to the icons */
-        .icon.route1 {
-            animation: route1 10s linear infinite;
-        }
-
-        .icon.route2 {
-            animation: route2 12s linear infinite;
-        }
-
-        .icon.route3 {
-            animation: route3 14s linear infinite;
-        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Transportation to Our Wedding</h1>
+        <h1>Transportation</h1>
     </header>
+
 
     <div class="map-container">
         <!-- Replace with your static map image -->
@@ -136,8 +142,8 @@
 
         <!-- Replace with your PNG icons -->
         <img src="images/car.png" alt="Car Icon 1" class="icon route1">
-        <img src="images/train.png" alt="Bus Icon" class="icon route2">
-        <img src="images/plane.png" alt="Bike Icon" class="icon route3">
+        <img src="images/train.png" alt="Train Icon" class="icon route2">
+        <img src="images/plane.png" alt="Plane Icon" class="icon route3">
     </div>
 </body>
 </html>

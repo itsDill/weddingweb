@@ -5,30 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <title>RSVP</title>
+    <style>
 
+        }
+        header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header .logo {
+            height: 50px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+        section.rsvp {
+            text-align: center;
+            margin: 2rem auto;
+        }
+        form {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        form label {
+            display: block;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
 </head>
 <body>
     <header>
-    <img src="images/F703CAEA-82C8-4874-9B40-472296E8EF66.png" alt="Logo" class="logo">
-    <h1>Accommodation</h1>
-    <nav>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="accomodation.html">Accommodation</a></li>
-            <li><a href="transport.html">Transport</a></li>
-            <li><a href="photos.html">Photos</a></li>
-            <li><a href="rsvp.html">RSVP</a></li>
-        </ul>
-    </nav>
-</header>
-<body>
-<body>
-    <header>
+        <img src="images/F703CAEA-82C8-4874-9B40-472296E8EF66.png" alt="Logo" class="logo">
         <h1>RSVP</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="accomodation.html">Accommodation</a></li>
+                <li><a href="transport.html">Transport</a></li>
+                <li><a href="pictures.html">Photos</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section class="rsvp">
-        <p>Please send your RSVP via email to: <a href="dillandchalisa.com">wedding@example.com</a></p>
+        <form id="rsvpForm">
+            <label>
+                Will you be attending the wedding?
+                <input type="radio" name="attend" value="yes" required> Yes
+                <input type="radio" name="attend" value="no"> No
+            </label>
+            <div id="dietOptions" style="display: none;">
+                <label>
+                    Please select your dietary preferences:
+                    <br>
+                    <input type="checkbox" name="diet" value="vegetarian"> Vegetarian
+                    <input type="checkbox" name="diet" value="vegan"> Vegan
+                    <input type="checkbox" name="diet" value="gluten-free"> Gluten-Free
+                    <input type="checkbox" name="diet" value="none"> No Preference
+                </label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
     </section>
+
+    <script>
+        const rsvpForm = document.getElementById('rsvpForm');
+        const dietOptions = document.getElementById('dietOptions');
+
+        rsvpForm.addEventListener('change', (event) => {
+            if (event.target.name === 'attend') {
+                if (event.target.value === 'yes') {
+                    dietOptions.style.display = 'block';
+                } else {
+                    dietOptions.style.display = 'none';
+                }
+            }
+        });
+
+        rsvpForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = new FormData(rsvpForm);
+            const attend = formData.get('attend');
+
+            if (attend === 'yes') {
+                alert('Thank you for confirming! Your dietary preferences have been noted.');
+                // Here you could send the form data to your server/email
+            } else {
+                alert('Thank you for letting us know! We are sorry you cannot attend.');
+                // Additional action for "no" responses
+            }
+
+            rsvpForm.reset();
+            dietOptions.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
