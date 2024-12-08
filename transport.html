@@ -3,68 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accommodation</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Transportation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #b84c65;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .map-image {
+            width: 100%;
+            border: 2px solid #b84c65;
+        }
+
+        .icon {
+            position: absolute;
+            width: 40px;
+        }
+
+        /* First route animation */
+        @keyframes route1 {
+            0% {
+                top: 80%;
+                left: 10%;
+            }
+            25% {
+                top: 70%;
+                left: 25%;
+            }
+            50% {
+                top: 50%;
+                left: 40%;
+            }
+            75% {
+                top: 30%;
+                left: 60%;
+            }
+            100% {
+                top: 10%;
+                left: 90%;
+            }
+        }
+
+        /* Second route animation */
+        @keyframes route2 {
+            0% {
+                top: 60%;
+                left: 60%;
+            }
+            25% {
+                top: 70%;
+                left: 60%;
+            }
+            50% {
+                top: 80%;
+                left: 60%;
+            }
+            75% {
+                top: 90%;
+                left: 80%;
+            }
+            100% {
+                top: 100%;
+                left: 85%;
+            }
+        }
+
+        /* Third route animation */
+        @keyframes route3 {
+            0% {
+                top: 95%;
+                left: 50%;
+            }
+            25% {
+                top: 80%;
+                left: 50%;
+            }
+            50% {
+                top: 65%;
+                left: 50%;
+            }
+            75% {
+                top: 60%;
+                left: 50%;
+            }
+            100% {
+                top: 50%;
+                left: 50%;
+            }
+        }
+
+        /* Assign animations to the icons */
+        .icon.route1 {
+            animation: route1 10s linear infinite;
+        }
+
+        .icon.route2 {
+            animation: route2 12s linear infinite;
+        }
+
+        .icon.route3 {
+            animation: route3 14s linear infinite;
+        }
+    </style>
 </head>
 <body>
     <header>
-    <img src="images/F703CAEA-82C8-4874-9B40-472296E8EF66.png" alt="Logo" class="logo">
-    <h1>Accommodation</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="accommodation.html">Accommodation</a></li>
-            <li><a href="transport.html">Transport</a></li>
-            <li><a href="photos.html">Photos</a></li>
-            <li><a href="rsvp.html">RSVP</a></li>
-        </ul>
-    </nav>
-</header>
-<body>
+        <h1>Transportation to Our Wedding</h1>
+    </header>
 
+    <div class="map-container">
+        <!-- Replace with your static map image -->
+        <img src="images/SUPHAN BURII.png" alt="Map" class="map-image">
 
-    <!-- Luxury Destinations Section -->
-    <section class="luxury-destinations">
-        <div class="destination">
-            <a href="formula1.html">
-                <img src="images/sports/motorsport/motorsport5.jpg" alt="formula1">
-                <h2>Formula1</h2>
-            </a>
-        </div>
-        <div class="destination">
-            <a href="motogp.html">
-                <img src="images/sports/motorsport/motorsport6.jpg" alt="motogp">
-                <h2>MotoGP</h2>
-            </a>
-        </div>
-        <div class="destination">
-            <a href="wec.html">
-                <img src="images/sports/motorsport/motorsport8.jpg" alt="wec">
-                <h2>WEC</h2>
-            </a>
-        </div>
-        <div class="destination">
-            <a href="">
-                <img src="https://d3dpet1g0ty5ed.cloudfront.net/EN_Take_control_720x90.png" alt="Chiang Mai">
-                <h2>AD</h2>
-            </a>
-        </div>
-        <div class="destination">
-            <a href="wrc.html">
-                <img src="images/sports/motorsport/motorsport10.jpg" alt="wrc">
-                <h2>WRC</h2>
-            </a>
-        </div>
-        <div class="destination">
-            <a href="">
-                <img src="https://d3dpet1g0ty5ed.cloudfront.net/EN_Take_control_720x90.png" alt="Hua Hin">
-                <h2>AD</h2>
-            </a>
-        </div>
-    </section>
-
-    <section class="medium-image">
-        <img src="images/sports/motorsport/motorsport9.jpg" alt="Medium Image">
-    </section>
+        <!-- Replace with your PNG icons -->
+        <img src="images/car.png" alt="Car Icon 1" class="icon route1">
+        <img src="images/train.png" alt="Bus Icon" class="icon route2">
+        <img src="images/plane.png" alt="Bike Icon" class="icon route3">
+    </div>
 </body>
 </html>

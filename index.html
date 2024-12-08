@@ -3,275 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Wedding Invitation Login</title>
     <style>
         /* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e3b8ae, #9fada5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #4f6659;
+        }
 
-header {
-    text-align: center;
-    padding: 20px;
-}
+        /* Login Container */
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
 
-.logo {
-    max-width: 150px;
-}
+        /* Heading Styles */
+        .login-container h1 {
+            font-size: 24px;
+            color: #b84c65;
+            margin-bottom: 10px;
+        }
 
-.main-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-}
+        .subtitle {
+            font-size: 16px;
+            color: #4f6659;
+            margin-bottom: 20px;
+        }
 
-.left-section, .right-section {
-    width: 48%;
-}
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-/* Slideshow Styles */
-.slideshow {
-    position: relative;
-    width: 100%;
-    max-width: 600px; /* You can adjust this size */
-    height: 400px; /* Same as the medium image */
-    margin: auto;
-    overflow: hidden;
-}
+        label {
+            font-size: 14px;
+            text-align: left;
+            color: #4f6659;
+        }
 
-.slide {
-    display: none;
-    width: 100%;
-    height: 100%; /* Ensure full coverage */
-    object-fit: cover; /* Ensures images cover the area without distortion */
-}
+        input {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #9fada5;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-/* Navigation Arrows */
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-}
+        input:focus {
+            outline: none;
+            border-color: #b84c65;
+        }
 
-.arrow-left {
-    left: 0;
-}
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #b84c65;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-.arrow-right {
-    right: 0;
-}
+        button:hover {
+            background-color: #a43d59;
+        }
 
-/* Centering the heading */
-.subheading {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* Info Boxes Styles */
-.info-boxes {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.box {
-    width: 45%;
-    padding: 15px;
-    margin-top: 20px;
-    background-color: #f1f1f1;
-    text-align: center;
-    border-radius: 5px;
-}
-
-/* Second Section Styles */
-.second-section {
-    text-align: center;
-    padding: 20px;
-}
-
-.medium-image {
-    max-width: 100%;
-    height: auto;
-}
-
-.map-image {
-    width: 100%;
-    height: auto;
-}
-
-.location-info {
-    margin-top: 20px;
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .main-section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .left-section, .right-section {
-        width: 100%;
-    }
-
-    .info-boxes {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .box {
-        width: 90%;
-        margin-top: 10px;
-    }
-
-    .slideshow {
-        height: auto; /* Adjust slideshow height for smaller screens */
-    }
-
-    .arrow {
-        font-size: 18px;
-        padding: 5px;
-    }
-
-    .subheading {
-        font-size: 18px;
-    }
-}
-
+        /* Error Message */
+        .error-message {
+            color: #b84c65;
+            display: none;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <header>
-    <img src="images/F703CAEA-82C8-4874-9B40-472296E8EF66.png" alt="Logo" class="logo">
-    <h1>Welcome to Our Wedding</h1>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="accomodation.html">Accommodation</a></li>
-            <li><a href="transport.html">Transport</a></li>
-            <li><a href="photos.html">Photos</a></li>
-            <li><a href="rsvp.html">RSVP</a></li>
-        </ul>
-    </nav>
-</header>
-
-
-    <div class="subheading">Join us in celebrating our love</div>
-
-    <!-- Main Section -->
-    <section class="main-section">
-        <!-- Left Side: Slideshow -->
-        <div class="left-section">
-            <div class="slideshow">
-                <img src="images/IMG_3931 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5234 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5904 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/C17D691C-F527-4CA0-8B7D-98B687B37B18_1_105_c.jpeg" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5907 2.JPG" alt="Couple Photo" class="slide">
-
-                <!-- Navigation Arrows -->
-                <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-                <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
-            </div>
-        </div>
-
-        <!-- Right Side: Info Boxes -->
-        <div class="right-section">
-            <div class="info-boxes">
-                <div class="box">
-                    <h2>Days Until Wedding</h2>
-                    <p id="days-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Total Hours Until Wedding</h2>
-                    <p id="hours-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Total Minutes Until Wedding</h2>
-                    <p id="minutes-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Total Seconds Until Wedding</h2>
-                    <p id="seconds-count">0</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Second Section -->
-    <section class="second-section">
-        <img src="images/love-7233_256.gif" alt="Medium Image" class="medium-image">
-        <div class="location-info">
-            <img src="images/D7A9A7AD-4764-4071-833B-2FCC2D866478.png" alt="Map" class="map-image">
-            <p class="location-text">Our wedding will be held at [Venue Location]</p>
-        </div>
-    </section>
-
-    <!-- Countdown Script -->
+    <main>
+        <section class="login-container">
+            <h1>Welcome to Our Wedding</h1>
+            <p class="subtitle">Please enter your details to view the invitation.</p>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                <button type="submit">Login</button>
+            </form>
+            <p id="error" class="error-message">Invalid username or password</p>
+        </section>
+    </main>
     <script>
-        var weddingDate = new Date("Jan 3, 2026 14:00:00").getTime();
-        var countdownFunction = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = weddingDate - now;
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-            document.getElementById("days-count").innerHTML = days;
-            document.getElementById("hours-count").innerHTML = hours;
-            document.getElementById("minutes-count").innerHTML = minutes;
-            document.getElementById("seconds-count").innerHTML = seconds;
+            // Example: Replace this with a real backend API or secure data storage
+            const users = {
+                'dill': 'jupiter',
+                'chalisa': 'jupiter'
+            };
 
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("days-count").innerHTML = "0";
-                document.getElementById("hours-count").innerHTML = "0";
-                document.getElementById("minutes-count").innerHTML = "0";
-                document.getElementById("seconds-count").innerHTML = "0";
+            if (users[username] && users[username] === password) {
+                localStorage.setItem('loggedInUser', username);
+                window.location.href = 'home.html'; // Redirect to home page
+            } else {
+                const error = document.getElementById('error');
+                error.textContent = 'Invalid username or password.';
+                error.style.display = 'block';
             }
-        }, 1000);
+        });
     </script>
-
-    <!-- Slideshow Script -->
-    <script>
-        let slideIndex = 0;
-        const slides = document.querySelectorAll(".slide");
-
-        // Show the current slide
-        function showSlide() {
-            slides.forEach((slide, index) => {
-                slide.style.display = (index === slideIndex) ? "block" : "none";
-            });
-        }
-
-        // Change slide based on direction (-1 for previous, 1 for next)
-        function changeSlide(direction) {
-            slideIndex += direction;
-            if (slideIndex < 0) {
-                slideIndex = slides.length - 1;  // Go to the last slide if at the start
-            }
-            if (slideIndex >= slides.length) {
-                slideIndex = 0;  // Go to the first slide if at the end
-            }
-            showSlide();
-        }
-
-        // Initialize the slideshow by showing the first image
-        showSlide();
-    </script>
-
 </body>
 </html>
