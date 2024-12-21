@@ -1,3 +1,4 @@
+<html lang<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -5,7 +6,6 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>Wedding Invitation</title>
     <style>
-
         .content {
             display: flex;
             gap: 20px;
@@ -22,6 +22,10 @@
         .icon-container {
             display: flex;
             align-items: center;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .icon-placeholder {
@@ -34,6 +38,8 @@
 
         .icon-text {
             flex: 1;
+            font-size: 18px;
+            color: #4f6659;
         }
 
         /* Slideshow Styles */
@@ -87,6 +93,10 @@
             justify-content: space-between;
             gap: 10px;
             margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .countdown-box {
@@ -126,6 +136,10 @@
             justify-content: space-between;
             margin-top: 20px;
             gap: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .map {
@@ -156,64 +170,72 @@
 </head>
 <body>
     <header>
-    <img src="images/F703CAEA-82C8-4874-9B40-472296E8EF66-removebg-preview.png" alt="Logo" class="logo">
-    <h1>Home</h1>
-    <nav>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="accomodation.html">Getting There</a></li>
-            <li><a href="pictures.html">Gallery</a></li>
-            <li><a href="rsvp.html">RSVP</a></li>
-        </ul>
-    </nav>
-</header>
+        <img src="images/designPreview-removebg-preview.png" alt="Logo" class="logo">
+        <h1>Home</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="accomodation.html">Getting There</a></li>
+                <li><a href="pictures.html">Gallery</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <h1>Welcome to Our Wedding</h1>
 
-        <div class="content">
-    <!-- Icons -->
-    <div class="icons">
-        <div class="icon-container">
-            <img src="images/calender-2579300_1280.jpg" alt="Calendar Icon" class="icon-image">
-            <div class="icon-text">3 January 2026</div>
-        </div>
-        <div class="icon-container">
-            <img src="images/clock-1605224_1280.png" alt="Clock Icon" class="icon-image">
-            <div class="icon-text">4pm Onwards</div>
-        </div>
-        <div class="icon-container">
-            <img src="images/map-1272165_1280.png" alt="Location Icon" class="icon-image">
-            <div class="icon-text">Khao Yai, Thailand</div>
-        </div>
-    </div>
-
-            <!-- Slideshow -->
-            <div class="slideshow">
-                <img src="images/IMG_3931 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5234 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5904 2.JPG" alt="Couple Photo" class="slide">
-                <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-                <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
+    <div class="content">
+        <!-- Icons -->
+        <div class="icons">
+            <div class="icon-container">
+                <img src="images/calender-2579300_1280.jpg" alt="Calendar Icon" class="icon-image">
+                <div class="icon-text">3 January 2026</div>
+            </div>
+            <div class="icon-container">
+                <img src="images/clock-1605224_1280.png" alt="Clock Icon" class="icon-image">
+                <div class="icon-text">4pm Onwards</div>
+            </div>
+            <div class="icon-container">
+                <img src="images/map-1272165_1280.png" alt="Location Icon" class="icon-image">
+                <div class="icon-text">Khao Yai, Thailand</div>
             </div>
         </div>
 
-        <!-- Countdown -->
-        <div class="countdown" id="countdown"></div>
-
-        <!-- Map Section -->
-        <div class="map-section">
-            <div class="map">Map Placeholder</div>
-            <div>
-                <h3>Dress Code</h3>
-                <a href="gettingthere.html" class="button">Getting There</a>
-                <a href="wheretostay.html" class="button">Where to Stay</a>
-                <a href="gallery.html" class="button">Gallery</a>
-            </div>
+        <!-- Slideshow -->
+        <div class="slideshow">
+            <img src="images/IMG_3931 2.JPG" alt="Couple Photo" class="slide">
+            <img src="images/IMG_5234 2.JPG" alt="Couple Photo" class="slide">
+            <img src="images/IMG_5904 2.JPG" alt="Couple Photo" class="slide">
+            <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
+            <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
         </div>
-
-        <!-- RSVP -->
-        <div class="rsvp">RSVP by 31 October 2025</div>
     </div>
+
+    <!-- Countdown -->
+    <div class="countdown" id="countdown"></div>
+
+    <!-- Map Section -->
+<div class="map-section">
+    <div class="map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.1216875289665!2d101.3194161!3d14.5998451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311dd2cdd36b9671%3A0x2602e7d3b54d198b!2sMiraSierra%20Khao%20Yai!5e0!3m2!1sen!2sth!4v1691000000000!5m2!1sen!2sth
+"
+            width="100%"
+            height="100%"
+            style="border:0; border-radius: 10px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+    <div>
+        <h3>Dress Code</h3>
+        <a href="rsvp.html" class="button">RSVP</a>
+        <a href="accomodation.html" class="button">Where to Stay</a>
+        <a href="pictures.html" class="button">Gallery</a>
+    </div>
+</div>
+
 
     <script>
         const weddingDate = new Date('2026-01-03T00:00:00');
