@@ -22,9 +22,9 @@ header {
 
 header .logo {
     position: absolute;
-    top: 5px;
+    top: 1px;
     left: 18px;
-    width: 100px; /* Logo size */
+    width: 90px; /* Logo size */
 }
 
 header h1 {
