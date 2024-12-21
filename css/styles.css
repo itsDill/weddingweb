@@ -206,3 +206,10 @@ button:hover {
   border: 1px solid #ddd;
   padding: 10px;
 }
+
+.icon-image {
+    width: 50px; /* Adjust the width */
+    height: 50px; /* Adjust the height */
+    object-fit: contain; /* Ensures the image maintains its aspect ratio */
+    margin-bottom: 10px; /* Adds space between the image and text */
+}
