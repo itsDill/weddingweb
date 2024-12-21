@@ -22,8 +22,8 @@ header {
 
 header .logo {
     position: absolute;
-    top: 15px;
-    left: 25px;
+    top: 5px;
+    left: 15px;
     width: 100px; /* Logo size */
 }
 
