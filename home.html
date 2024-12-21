@@ -1,154 +1,158 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Wedding</title>
     <link rel="stylesheet" href="css/styles.css">
+    <title>Wedding Invitation</title>
     <style>
-        /* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
 
-header {
-    text-align: center;
-    padding: 20px;
-}
+        .content {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-.logo {
-    max-width: 150px;
-}
+        .icons {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-.main-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-}
+        .icon-container {
+            display: flex;
+            align-items: center;
+        }
 
-.left-section, .right-section {
-    width: 48%;
-}
+        .icon-placeholder {
+            width: 60px;
+            height: 60px;
+            background-color: #9fada5;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
 
-/* Slideshow Styles */
-.slideshow {
-    position: relative;
-    width: 100%;
-    max-width: 600px; /* You can adjust this size */
-    height: 400px; /* Same as the medium image */
-    margin: auto;
-    overflow: hidden;
-}
+        .icon-text {
+            flex: 1;
+        }
 
-.slide {
-    display: none;
-    width: 100%;
-    height: 100%; /* Ensure full coverage */
-    object-fit: cover; /* Ensures images cover the area without distortion */
-}
+        /* Slideshow Styles */
+        .slideshow {
+            position: relative;
+            flex: 2;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 50%; /* Adjust this to reduce width, e.g., 80% */
+            height: 400px; /* Reduce height, e.g., 250px for a more square appearance */
 
-/* Navigation Arrows */
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-}
+            /* Adjust slideshow to be square */
+            aspect-ratio: 1 / 1; /* Set 1:1 aspect ratio */
+            width: 100%; /* Allow flexibility within container */
+        }
 
-.arrow-left {
-    left: 0;
-}
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%; /* Ensures image fits within the square container */
+            object-fit: cover; /* Crop and fill without distortion */
+        }
 
-.arrow-right {
-    right: 0;
-}
+        .slide:first-child {
+            display: block;
+        }
 
-/* Centering the heading */
-.subheading {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: bold;
-}
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            padding: 10px;
+            cursor: pointer;
+        }
 
-/* Info Boxes Styles */
-.info-boxes {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
+        .arrow-left {
+            left: 10px;
+        }
 
-.box {
-    width: 45%;
-    padding: 15px;
-    margin-top: 20px;
-    background-color: #f1f1f1;
-    text-align: center;
-    border-radius: 5px;
-}
+        .arrow-right {
+            right: 10px;
+        }
 
-/* Second Section Styles */
-.second-section {
-    text-align: center;
-    padding: 20px;
-}
+        /* Countdown Styles */
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-.medium-image {
-    max-width: 100%;
-    height: auto;
-}
+        .countdown-box {
+            flex: 1;
+            background-color: #e3b8ae;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            color: #fff;
+        }
 
-.map-image {
-    width: 100%;
-    height: auto;
-}
+        /* Interactive Buttons */
+        .interactive-buttons {
+            text-align: right;
+            margin: 20px 0;
+        }
 
-.location-info {
-    margin-top: 20px;
-}
+        .button {
+            display: block;
+            padding: 10px 20px;
+            background-color: #b84c65;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+        }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .main-section {
-        flex-direction: column;
-        align-items: center;
-    }
+        .button:hover {
+            background-color: #a43d59;
+        }
 
-    .left-section, .right-section {
-        width: 100%;
-    }
+        /* Map Section */
+        .map-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 20px;
+        }
 
-    .info-boxes {
-        flex-direction: column;
-        align-items: center;
-    }
+        .map {
+            flex: 1;
+            /* Adjust map to be more square */
+            aspect-ratio: 1 / 1; /* Set 1:1 aspect ratio */
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            height: 250px; /* Original: 300px */
+            width: 80%; /* Adjust this to reduce width, e.g., 80% */
+        }
 
-    .box {
-        width: 90%;
-        margin-top: 10px;
-    }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
 
-    .slideshow {
-        height: auto; /* Adjust slideshow height for smaller screens */
-    }
+            .countdown {
+                flex-direction: column;
+                gap: 10px;
+            }
 
-    .arrow {
-        font-size: 18px;
-        padding: 5px;
-    }
-
-    .subheading {
-        font-size: 18px;
-    }
-}
-
+            .map-section {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -166,113 +170,87 @@ header {
     </nav>
 </header>
 
+        <div class="content">
+            <!-- Icons -->
+            <div class="icons">
+                <div class="icon-container">
+                    <div class="icon-placeholder"></div>
+                    <div class="icon-text">Placeholder Text 1</div>
+                </div>
+                <div class="icon-container">
+                    <div class="icon-placeholder"></div>
+                    <div class="icon-text">Placeholder Text 2</div>
+                </div>
+                <div class="icon-container">
+                    <div class="icon-placeholder"></div>
+                    <div class="icon-text">Placeholder Text 3</div>
+                </div>
+            </div>
 
-    <div class="subheading">Join us in celebrating our love</div>
-
-    <!-- Main Section -->
-    <section class="main-section">
-        <!-- Left Side: Slideshow -->
-        <div class="left-section">
+            <!-- Slideshow -->
             <div class="slideshow">
                 <img src="images/IMG_3931 2.JPG" alt="Couple Photo" class="slide">
                 <img src="images/IMG_5234 2.JPG" alt="Couple Photo" class="slide">
                 <img src="images/IMG_5904 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/C17D691C-F527-4CA0-8B7D-98B687B37B18_1_105_c.jpeg" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5907 2.JPG" alt="Couple Photo" class="slide">
-
-                <!-- Navigation Arrows -->
                 <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
                 <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
             </div>
         </div>
 
-        <!-- Right Side: Info Boxes -->
-        <div class="right-section">
-            <div class="info-boxes">
-                <div class="box">
-                    <h2>Days Until Wedding</h2>
-                    <p id="days-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Total Hours Until Wedding</h2>
-                    <p id="hours-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Total Minutes Until Wedding</h2>
-                    <p id="minutes-count">0</p>
-                </div>
-                <div class="box">
-                    <h2>Total Seconds Until Wedding</h2>
-                    <p id="seconds-count">0</p>
-                </div>
+        <!-- Countdown -->
+        <div class="countdown" id="countdown"></div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <div class="map">Map Placeholder</div>
+            <div>
+                <h3>Dress Code</h3>
+                <a href="gettingthere.html" class="button">Getting There</a>
+                <a href="wheretostay.html" class="button">Where to Stay</a>
+                <a href="gallery.html" class="button">Gallery</a>
             </div>
         </div>
-    </section>
 
-    <!-- Second Section -->
-    <section class="second-section">
-        <img src="images/love-7233_256.gif" alt="Medium Image" class="medium-image">
-        <a href="https://www.google.com/maps/place/MiraSierra+Khao+Yai/@14.5998458,101.3352684,17z/data=!4m9!3m8!1s0x311dd2cdd36b9671:0x2602e7d3b54d198b!5m2!4m1!1i2!8m2!3d14.5998458!4d101.3378487!16s%2Fg%2F11btykb19_?entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D">
-        <div class="location-info">
-            <img src="images/D7A9A7AD-4764-4071-833B-2FCC2D866478.png" alt="Map" class="map-image">
-            <p class="location-text">[Venue Location]</p>
-        </div>
-    </section>
+        <!-- RSVP -->
+        <div class="rsvp">RSVP by 31 October 2025</div>
+    </div>
 
-    <!-- Countdown Script -->
     <script>
-        var weddingDate = new Date("Jan 3, 2026 14:00:00").getTime();
-        var countdownFunction = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = weddingDate - now;
+        const weddingDate = new Date('2026-01-03T00:00:00');
 
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        function updateCountdown() {
+            const now = new Date();
+            const timeDifference = weddingDate - now;
 
-            document.getElementById("days-count").innerHTML = days;
-            document.getElementById("hours-count").innerHTML = hours;
-            document.getElementById("minutes-count").innerHTML = minutes;
-            document.getElementById("seconds-count").innerHTML = seconds;
-
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("days-count").innerHTML = "0";
-                document.getElementById("hours-count").innerHTML = "0";
-                document.getElementById("minutes-count").innerHTML = "0";
-                document.getElementById("seconds-count").innerHTML = "0";
+            if (timeDifference <= 0) {
+                document.getElementById('countdown').innerHTML = "It's the big day!";
+                return;
             }
-        }, 1000);
-    </script>
 
-    <!-- Slideshow Script -->
-    <script>
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = `
+                <div class="countdown-box">${days} Days</div>
+                <div class="countdown-box">${hours} Hours</div>
+                <div class="countdown-box">${minutes} Minutes</div>
+                <div class="countdown-box">${seconds} Seconds</div>
+            `;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
         let slideIndex = 0;
-        const slides = document.querySelectorAll(".slide");
+        const slides = document.querySelectorAll('.slide');
 
-        // Show the current slide
-        function showSlide() {
-            slides.forEach((slide, index) => {
-                slide.style.display = (index === slideIndex) ? "block" : "none";
-            });
-        }
-
-        // Change slide based on direction (-1 for previous, 1 for next)
         function changeSlide(direction) {
-            slideIndex += direction;
-            if (slideIndex < 0) {
-                slideIndex = slides.length - 1;  // Go to the last slide if at the start
-            }
-            if (slideIndex >= slides.length) {
-                slideIndex = 0;  // Go to the first slide if at the end
-            }
-            showSlide();
+            slides[slideIndex].style.display = 'none';
+            slideIndex = (slideIndex + direction + slides.length) % slides.length;
+            slides[slideIndex].style.display = 'block';
         }
-
-        // Initialize the slideshow by showing the first image
-        showSlide();
     </script>
-
 </body>
 </html>

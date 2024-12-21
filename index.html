@@ -3,254 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Wedding Invitation</title>
+    <title>Wedding Invitation Login</title>
     <style>
-
-        .content {
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e3b8ae, #9fada5);
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #4f6659;
         }
 
-        .icons {
-            flex: 1;
+        /* Login Container */
+        .login-container {
+            background: linear-gradient(135deg, #fff, #f4f4f4);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 90%;
+            max-width: 350px;
+        }
+
+        /* Heading Styles */
+        .login-container h1 {
+            font-size: 26px;
+            color: #b84c65;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #4f6659;
+            margin-bottom: 25px;
+        }
+
+        /* Form Styles */
+        form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .icon-container {
-            display: flex;
-            align-items: center;
+        label {
+            font-size: 14px;
+            text-align: left;
+            color: #4f6659;
         }
 
-        .icon-placeholder {
-            width: 60px;
-            height: 60px;
-            background-color: #9fada5;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .icon-text {
-            flex: 1;
-        }
-
-        /* Slideshow Styles */
-        .slideshow {
-            position: relative;
-            flex: 2;
-            background-color: #f0f0f0;
+        input {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #9fada5;
             border-radius: 10px;
-            overflow: hidden;
-            width: 50%; /* Adjust this to reduce width, e.g., 80% */
-            height: 250px; /* Reduce height, e.g., 250px for a more square appearance */
-
-            /* Adjust slideshow to be square */
-            aspect-ratio: 1 / 1; /* Set 1:1 aspect ratio */
-            width: 100%; /* Allow flexibility within container */
-        }
-
-        .slide {
-            display: none;
             width: 100%;
-            height: 100%; /* Ensures image fits within the square container */
-            object-fit: cover; /* Crop and fill without distortion */
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
         }
 
-        .slide:first-child {
-            display: block;
+        input:focus {
+            outline: none;
+            border-color: #b84c65;
+            box-shadow: 0 0 5px rgba(184, 76, 101, 0.4);
         }
 
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 24px;
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .arrow-left {
-            left: 10px;
-        }
-
-        .arrow-right {
-            right: 10px;
-        }
-
-        /* Countdown Styles */
-        .countdown {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .countdown-box {
-            flex: 1;
-            background-color: #e3b8ae;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            color: #fff;
-        }
-
-        /* Interactive Buttons */
-        .interactive-buttons {
-            text-align: right;
-            margin: 20px 0;
-        }
-
-        .button {
-            display: block;
-            padding: 10px 20px;
+        button {
+            padding: 12px;
+            font-size: 18px;
             background-color: #b84c65;
             color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            margin-bottom: 10px;
-        }
-
-        .button:hover {
-            background-color: #a43d59;
-        }
-
-        /* Map Section */
-        .map-section {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            gap: 20px;
-        }
-
-        .map {
-            flex: 1;
-            /* Adjust map to be more square */
-            aspect-ratio: 1 / 1; /* Set 1:1 aspect ratio */
-            background-color: #f0f0f0;
+            border: none;
             border-radius: 10px;
-            height: 250px; /* Original: 300px */
-            width: 80%; /* Adjust this to reduce width, e.g., 80% */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        @media (max-width: 768px) {
-            .content {
-                flex-direction: column;
-            }
+        button:hover {
+            background-color: #a43d59;
+            transform: scale(1.05);
+        }
 
-            .countdown {
-                flex-direction: column;
-                gap: 10px;
-            }
+        /* Error Message */
+        .error-message {
+            color: #b84c65;
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+        }
 
-            .map-section {
-                flex-direction: column;
-            }
+        /* Decorative Divider */
+        .divider {
+            margin: 20px 0;
+            border-top: 1px solid #9fada5;
         }
     </style>
 </head>
 <body>
-    <header>
-    <img src="images/F703CAEA-82C8-4874-9B40-472296E8EF66.png" alt="Logo" class="logo">
-    <h1>Welcome to Our Wedding</h1>
-    <nav>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="accomodation.html">Accommodation</a></li>
-            <li><a href="transport.html">Transport</a></li>
-            <li><a href="pictures.html">Photos</a></li>
-            <li><a href="rsvp.html">RSVP</a></li>
-        </ul>
-    </nav>
-</header>
-
-        <div class="content">
-            <!-- Icons -->
-            <div class="icons">
-                <div class="icon-container">
-                    <div class="icon-placeholder"></div>
-                    <div class="icon-text">Placeholder Text 1</div>
-                </div>
-                <div class="icon-container">
-                    <div class="icon-placeholder"></div>
-                    <div class="icon-text">Placeholder Text 2</div>
-                </div>
-                <div class="icon-container">
-                    <div class="icon-placeholder"></div>
-                    <div class="icon-text">Placeholder Text 3</div>
-                </div>
-            </div>
-
-            <!-- Slideshow -->
-            <div class="slideshow">
-                <img src="images/IMG_3931 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5234 2.JPG" alt="Couple Photo" class="slide">
-                <img src="images/IMG_5904 2.JPG" alt="Couple Photo" class="slide">
-                <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-                <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
-            </div>
-        </div>
-
-        <!-- Countdown -->
-        <div class="countdown" id="countdown"></div>
-
-        <!-- Map Section -->
-        <div class="map-section">
-            <div class="map">Map Placeholder</div>
-            <div>
-                <h3>Dress Code</h3>
-                <a href="gettingthere.html" class="button">Getting There</a>
-                <a href="wheretostay.html" class="button">Where to Stay</a>
-                <a href="gallery.html" class="button">Gallery</a>
-            </div>
-        </div>
-
-        <!-- RSVP -->
-        <div class="rsvp">RSVP by 31 October 2025</div>
-    </div>
-
+    <main>
+        <section class="login-container">
+            <h1>You're Invited!</h1>
+            <p class="subtitle">Enter the password to view our wedding details.</p>
+            <form id="loginForm">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter the password">
+                <button type="submit">View Invitation</button>
+            </form>
+            <div class="divider"></div>
+            <p id="error" class="error-message">Invalid password. Please try again.</p>
+        </section>
+    </main>
     <script>
-        const weddingDate = new Date('2026-01-03T00:00:00');
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        function updateCountdown() {
-            const now = new Date();
-            const timeDifference = weddingDate - now;
+            const password = document.getElementById('password').value;
 
-            if (timeDifference <= 0) {
-                document.getElementById('countdown').innerHTML = "It's the big day!";
-                return;
+            // Example: Replace this with a real backend API or secure data storage
+            const validPassword = 'jupiter';
+
+            if (password === validPassword) {
+                localStorage.setItem('loggedInUser', 'guest');
+                window.location.href = 'home.html'; // Redirect to home page
+            } else {
+                const error = document.getElementById('error');
+                error.textContent = 'Invalid password. Please try again.';
+                error.style.display = 'block';
             }
-
-            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-            document.getElementById('countdown').innerHTML = `
-                <div class="countdown-box">${days} Days</div>
-                <div class="countdown-box">${hours} Hours</div>
-                <div class="countdown-box">${minutes} Minutes</div>
-                <div class="countdown-box">${seconds} Seconds</div>
-            `;
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function changeSlide(direction) {
-            slides[slideIndex].style.display = 'none';
-            slideIndex = (slideIndex + direction + slides.length) % slides.length;
-            slides[slideIndex].style.display = 'block';
-        }
+        });
     </script>
 </body>
 </html>
