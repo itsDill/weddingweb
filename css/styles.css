@@ -66,113 +66,7 @@ nav ul li a:hover {
     margin: 20px;
 }
 
-/* Left Section for Slideshow */
-.left-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
 
-.slideshow-container {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-}
-
-.slideshow-container img {
-    width: 100%;
-    border-radius: 8px; /* Rounds image corners */
-    display: none; /* Hides images by default */
-}
-
-.slideshow-container img.active {
-    display: block; /* Shows the current slide */
-}
-
-/* Arrow Buttons for Manual Slideshow Navigation */
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2em; /* Large arrow size */
-    color: #4f6659;
-    cursor: pointer;
-    user-select: none;
-}
-
-.arrow.left {
-    left: -40px; /* Positions left arrow outside image */
-}
-
-.arrow.right {
-    right: -40px; /* Positions right arrow outside image */
-}
-
-/* Right Section: Countdown Info Boxes */
-.right-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Countdown Boxes */
-.info-boxes {
-    display: flex;
-    flex-wrap: wrap; /* Wraps boxes on smaller screens */
-    gap: 20px;
-    justify-content: space-around;
-}
-
-.box {
-    width: 100px;
-    height: 100px;
-    background-color: #9fada5; /* Light olive */
-    color: #4f6659;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow for depth */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.box h2 {
-    font-size: 0.9em; /* Smaller font for box titles */
-    margin-bottom: 5px;
-}
-
-/* Second Section Layout */
-.second-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px;
-}
-
-.medium-image {
-    width: 60%; /* Medium image size */
-    border-radius: 8px;
-}
-
-.location-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.map-image {
-    width: 200px; /* Map image size */
-    border-radius: 8px;
-}
-
-.location-text {
-    font-size: 1.2em; /* Larger font for location text */
-    text-align: center;
-    color: #4f6659; /* Olive brown text */
-}
 
 /* Responsive Design for Small Screens */
 @media (max-width: 768px) {
@@ -205,26 +99,6 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* Slideshow Container */
-.slideshow-container {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: 16 / 9; /* Keeps a consistent aspect ratio */
-    overflow: hidden;
-}
-
-.slideshow-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none; /* Hides images by default */
-}
-
-.slideshow-container img.active {
-    display: block; /* Shows the current slide */
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     header h1 {
@@ -235,18 +109,8 @@ nav ul li a:hover {
         flex-direction: column; /* Stack left and right sections */
     }
 
-    .info-boxes {
-        flex-direction: column;
-        align-items: center; /* Center countdown boxes */
-    }
 
-    .slideshow-container {
-        max-width: 100%; /* Ensure slideshow takes full width on mobile */
-    }
 
-    .arrow {
-        font-size: 1.5em; /* Adjust arrow size */
-    }
 }
 /* Luxury Destinations Section */
 .luxury-destinations {
