@@ -29,7 +29,7 @@ header .logo {
 
 header h1 {
     color: white;
-    font-size: 2em; /* Main header font size */
+    font-size: 1em; /* Main header font size */
 }
 
 /* Navigation Styling */
@@ -43,7 +43,7 @@ nav ul {
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 nav ul li a:hover {
