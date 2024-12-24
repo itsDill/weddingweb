@@ -6,35 +6,25 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>RSVP</title>
     <style>
-
-        section.rsvp {
+        body {
+            font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+
+        .form-container {
             margin: 2rem auto;
-        }
-        form {
-            max-width: 500px;
-            margin: 2rem auto;
+            max-width: 800px;
             padding: 1rem;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        form label {
-            display: block;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        button {
-            padding: 0.5rem 1rem;
-            background: #28a745;
-            color: white;
+        iframe {
+            width: 100%;
+            height: 600px;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        button:hover {
-            background: #218838;
         }
     </style>
 </head>
@@ -45,64 +35,20 @@
         <nav>
             <ul>
                 <li><a href="home.html">Home</a></li>
-            <li><a href="accomodation.html">Accommodation</a></li>
-            <li><a href="pictures.html">Gallery</a></li>
-            <li><a href="rsvp.html">RSVP</a></li>
+                <li><a href="accommodation.html">Accommodation</a></li>
+                <li><a href="pictures.html">Gallery</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="rsvp">
-        <form id="rsvpForm">
-            <label>
-                Will you be attending the wedding?
-                <input type="radio" name="attend" value="yes" required> Yes
-                <input type="radio" name="attend" value="no"> No
-            </label>
-            <div id="dietOptions" style="display: none;">
-                <label>
-                    Please select your dietary preferences:
-                    <br>
-                    <input type="checkbox" name="diet" value="vegetarian"> Vegetarian
-                    <input type="checkbox" name="diet" value="vegan"> Vegan
-                    <input type="checkbox" name="diet" value="gluten-free"> Gluten-Free
-                    <input type="checkbox" name="diet" value="none"> No Preference
-                </label>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+    <section class="form-container">
+        <!-- Embed your Google Form -->
+        <iframe
+            src="https://forms.gle/VCGgWPHtcBhygdPP8"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
     </section>
-
-    <script>
-        const rsvpForm = document.getElementById('rsvpForm');
-        const dietOptions = document.getElementById('dietOptions');
-
-        rsvpForm.addEventListener('change', (event) => {
-            if (event.target.name === 'attend') {
-                if (event.target.value === 'yes') {
-                    dietOptions.style.display = 'block';
-                } else {
-                    dietOptions.style.display = 'none';
-                }
-            }
-        });
-
-        rsvpForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const formData = new FormData(rsvpForm);
-            const attend = formData.get('attend');
-
-            if (attend === 'yes') {
-                alert('Thank you for confirming! Your dietary preferences have been noted.');
-                // Here you could send the form data to your server/email
-            } else {
-                alert('Thank you for letting us know! We are sorry you cannot attend.');
-                // Additional action for "no" responses
-            }
-
-            rsvpForm.reset();
-            dietOptions.style.display = 'none';
-        });
-    </script>
 </body>
 </html>
