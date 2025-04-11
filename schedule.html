@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Wedding Schedule</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff8f5;
+            color: #4f6659;
+            line-height: 1.6;
+            padding-bottom: 30px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid #e3b8ae;
+        }
+
+        header.scrolled {
+            padding: 10px 30px;
+        }
+
+        .logo {
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .logo {
+            height: 50px;
+        }
+
+        header h1 {
+            display: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4f6659;
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #b84c65;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #b84c65;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #4f6659;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin: 20px 0;
+            color: #b84c65;
+            font-weight: 300;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+        }
+
+        h1::before, h1::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 1px;
+            background-color: #b84c65;
+        }
+
+        h1::before {
+            left: -60px;
+        }
+
+        h1::after {
+            right: -60px;
+        }
+
+        /* Schedule Styles */
+        .schedule-container {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .schedule-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            padding: 12px 25px;
+            background-color: #f9f1ef;
+            color: #4f6659;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .tab:hover {
+            background-color: #f0e2de;
+        }
+
+        .tab.active {
+            background-color: #e3b8ae;
+            color: #fff;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: #e3b8ae;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .event {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 4px solid #b84c65;
+            border-radius: 50%;
+            top: 25px;
+            z-index: 1;
+        }
+
+        .event-content {
+            padding: 20px;
+            background-color: #fff;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #e3b8ae;
+            transition: transform 0.3s ease;
+        }
+
+        .event-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .left {
+            left: 0;
+            text-align: right;
+        }
+
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .left::after {
+            right: -13px;
+        }
+
+        .right::after {
+            left: -13px;
+        }
+
+        .event-time {
+            color: #b84c65;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .event-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4f6659;
+            margin-bottom: 10px;
+        }
+
+        .event-description {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .event-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f1ef;
+            border-radius: 50%;
+            position: absolute;
+            color: #b84c65;
+            font-size: 18px;
+        }
+
+        .left .event-icon {
+            right: -60px;
+        }
+
+        .right .event-icon {
+            left: -60px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .notes-section {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+        }
+
+        .notes-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #b84c65;
+            text-align: center;
+        }
+
+        .notes-content {
+            padding: 15px;
+            background-color: #f9f1ef;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #e3b8ae, transparent);
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 20px;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95);
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease, padding 0.5s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            nav.active {
+                max-height: 300px;
+                padding: 10px 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 20px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h1::before, h1::after {
+                width: 30px;
+            }
+
+            h1::before {
+                left: -40px;
+            }
+
+            h1::after {
+                right: -40px;
+            }
+
+            .schedule-tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab {
+                flex: 1 1 calc(50% - 10px);
+                text-align: center;
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .timeline::before {
+                left: 31px;
+            }
+
+            .event {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left;
+            }
+
+            .left::after, .right::after {
+                left: 20px;
+            }
+
+            .left .event-icon, .right .event-icon {
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <img src="images/designPreview-removebg-preview.png" alt="Logo" class="logo">
+        <h1>Attire</h1>
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="attire.html">Attire</a></li>
+                <li><a href="pictures.html">Gallery</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="animate__animated animate__fadeIn">Our Wedding Schedule</h1>
+
+        <div class="schedule-container animate__animated animate__fadeIn">
+            <div class="schedule-tabs">
+                <button class="tab active" data-tab="tab1">Wedding Day</button>
+                <button class="tab" data-tab="tab2">Pre-Wedding</button>
+                <button class="tab" data-tab="tab3">After Party</button>
+            </div>
+
+            <!-- Wedding Day Schedule -->
+            <div id="tab1" class="tab-content active">
+                <div class="timeline">
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">4:00 PM</div>
+                            <div class="event-title">Guest Arrival</div>
+                            <div class="event-description">Couple's entrance - drinks by the pool</div>
+                        </div>
+                    </div>
+
+                    <div class="event right">
+                        <div class="event-content">
+                            <div class="event-time">4:30 PM</div>
+                            <div class="event-title">Cocktail Hour</div>
+                            <div class="event-description">Drinks and lawn games by the pool</div>
+                        </div>
+                    </div>
+
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">6:00 PM</div>
+                            <div class="event-title">Dinner</div>
+                            <div class="event-description">Cocktail-style dinner begins</div>
+                        </div>
+                    </div>
+
+                    <div class="event right">
+                        <div class="event-content">
+                            <div class="event-time">7:00 PM</div>
+                            <div class="event-title">Speeches</div>
+                            <div class="event-description">Speeches followed by a cake cutting</div>
+                        </div>
+                    </div>
+
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">7:30 PM</div>
+                            <div class="event-title">Celebration Dancing</div>
+                            <div class="event-description">The couple's first dance followed by parent dances.</div>
+                        </div>
+                    </div>
+
+
+                    <div class="event right">
+                        <div class="event-content">
+                            <div class="event-time">8:30 PM</div>
+                            <div class="event-title">Late Night Snacks</div>
+                            <div class="event-description">Braai by the pool.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Pre-Wedding Schedule -->
+            <div id="tab2" class="tab-content">
+                <div class="timeline">
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">12:00 PM</div>
+                            <div class="event-title">Welcome Reception</div>
+                            <div class="event-description">Casual gathering for friends and family.</div>
+                        </div>
+                    </div>
+
+                    <div class="event right">
+                        <div class="event-content">
+                            <div class="event-time">1:00 PM</div>
+                            <div class="event-title">Thai ceremony</div>
+                            <div class="event-description">Traditional Thai ceremony</div>
+                        </div>
+                    </div>
+
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">2:30 PM</div>
+                            <div class="event-title">Photos</div>
+                            <div class="event-description">Wedding and family photos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- After Party Schedule -->
+            <div id="tab3" class="tab-content">
+                <div class="timeline">
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">9:00 PM - 12:00 AM</div>
+                            <div class="event-title">Pool Party</div>
+                            <div class="event-description">Party by the pool with music and games</div>
+                        </div>
+                    </div>
+
+                    <div class="event right">
+                        <div class="event-content">
+                            <div class="event-time">1:00 PM - 4:00 PM</div>
+                            <div class="event-title">Jan 4th</div>
+                            <div class="event-title">Golf or Spa</div>
+                            <div class="event-description">Join us for Golf or a Spa day.</div>
+                        </div>
+                    </div>
+
+                    <div class="event left">
+                        <div class="event-content">
+                            <div class="event-time">4:00 PM</div>
+                            <div class="event-title">Departure</div>
+                            <div class="event-description">The newlyweds depart for their honeymoon.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="notes-section animate__animated animate__fadeIn">
+            <h3 class="notes-title">Important Notes</h3>
+            <div class="notes-content">
+                <p>Cocktail hour begins promptly at 4:00 PM, so please arrive a few minutes early to not miss our couple's entrance!</p>
+                <div class="divider"></div>
+                <p>Cocktail hour consists of drinks and light snacks, followed by a cocktail-style dinner. If you have special dietary needs, please feel free to contact us</p>
+                <div class="divider"></div>
+                <p>Shuttle will be arranged for nearby locations (schedule to be confirmed), please let us know if you are interested. Plenty of on-site parking</p>
+                <div class="divider"></div>
+                <p>For any questions about the schedule, feel free to  contact either Dill or Chalisa :)</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+
+                // Remove active class from all tabs and tab contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Animation for timeline events
+        const animateTimeline = () => {
+            const events = document.querySelectorAll('.event');
+
+            events.forEach(event => {
+                const eventPosition = event.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+
+                if(eventPosition < screenPosition) {
+                    event.classList.add('visible');
+                }
+            });
+        };
+
+        // Run animation on load and scroll
+        window.addEventListener('load', animateTimeline);
+        window.addEventListener('scroll', animateTimeline);
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const nav = document.getElementById('nav');
+
+        mobileToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileToggle.innerHTML = nav.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

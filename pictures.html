@@ -3,86 +3,813 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pictures</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Wedding Gallery</title>
     <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+        }
 
+        body {
+            background-color: #fff8f5;
+            color: #4f6659;
+            line-height: 1.6;
+            padding-bottom: 30px;
+        }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
+        /* Header Styles - Enhanced */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid #e3b8ae;
+        }
+
+        header.scrolled {
+            padding: 10px 30px;
+        }
+
+        .logo {
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .logo {
+            height: 50px;
+        }
+
+        header h1 {
+            display: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4f6659;
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #b84c65;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #b84c65;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #4f6659;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border: 2px solid #b84c65;
-            border-radius: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        .upload {
+        h1, h2, h3 {
             text-align: center;
-            margin: 20px;
-        }
-
-        .upload a {
+            margin: 20px 0;
             color: #b84c65;
-            font-weight: bold;
-            text-decoration: none;
+            font-weight: 300;
         }
 
-        .upload a:hover {
-            text-decoration: underline;
+        h1 {
+            font-size: 40px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
         }
 
+        h1::before, h1::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 1px;
+            background-color: #b84c65;
+        }
+
+        h1::before {
+            left: -60px;
+        }
+
+        h1::after {
+            right: -60px;
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            margin-bottom: 40px;
+        }
+
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: #f9f1ef;
+            color: #4f6659;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .filter-btn:hover {
+            background-color: #f0e2de;
+        }
+
+        .filter-btn.active {
+            background-color: #e3b8ae;
+            color: #fff;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .gallery-grid.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            padding: 20px;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .gallery-icon {
+            font-size: 20px;
+        }
+
+        /* Gallery Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border: 5px solid #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-caption {
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            max-width: 100%;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #e3b8ae;
+            transform: scale(1.1);
+        }
+
+        .modal-prev, .modal-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-prev:hover, .modal-next:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .upload-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #b84c65;
+        }
+
+        .upload-instructions {
+            margin-bottom: 25px;
+            font-size: 16px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .upload-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .upload-btn {
+            padding: 12px 25px;
+            background-color: #b84c65;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .upload-btn:hover {
+            background-color: #a43d59;
+            transform: translateY(-3px);
+        }
+
+        .upload-btn.secondary {
+            background-color: #4f6659;
+        }
+
+        .upload-btn.secondary:hover {
+            background-color: #405448;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 20px;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95);
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease, padding 0.5s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            nav.active {
+                max-height: 300px;
+                padding: 10px 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 20px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h1::before, h1::after {
+                width: 30px;
+            }
+
+            h1::before {
+                left: -40px;
+            }
+
+            h1::after {
+                right: -40px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .modal-prev, .modal-next {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body>
+    <header id="header">
+        <img src="images/designPreview-removebg-preview.png" alt="Logo" class="logo">
+        <h1>Attire</h1>
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="attire.html">Attire</a></li>
+                <li><a href="pictures.html">Gallery</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <header>
-        <h1>Wedding Photos</h1>
-    <img src="images/designPreview-removebg-preview.png" alt="Logo" class="logo">
-    <nav>
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="accomodation.html">Accommodation</a></li>
-            <li><a href="pictures.html">Gallery</a></li>
-            <li><a href="rsvp.html">RSVP</a></li>
-        </ul>
-    </nav>
-</header>
+    <div class="container">
+        <h1 class="animate__animated animate__fadeIn">Our Photo Gallery</h1>
 
+        <div class="upload-section animate__animated animate__fadeIn">
+            <h3 class="upload-title">Share Your Memories With Us</h3>
+            <p class="upload-instructions">
+                Help us create a beautiful gallery of memories by sharing your photos! Upload your favorite moments from our engagement party, pre-wedding events, or any special moments we've shared together.
+            </p>
+            <div class="upload-buttons">
+               <a href="https://drive.google.com/drive/folders/1496HuhdIN1qFYHmH4SB-ctkbLUsaU3Li" class="upload-btn">
+               <i class="fas fa-cloud-upload-alt"></i> Upload Photos
+            </a>
+</div>
 
+        </div>
 
+        <div class="gallery-container">
+            <div class="gallery-filter animate__animated animate__fadeIn">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="photoshoot">Photoshoot</button>
+                <button class="filter-btn" data-filter="Marriage">Marriage</button>
+                <button class="filter-btn" data-filter="Shenanigans">Shenanigans</button>
+            </div>
 
-    <section class="gallery">
-        <!-- Add as many images as you like -->
-        <img src="images/pic1.jpeg" alt="Couple Photo 1">
-        <img src="images/pic2.jpeg" alt="Couple Photo 2">
-        <img src="images/pic3.jpeg" alt="Couple Photo 3">
-        <img src="images/pic4.jpeg" alt="Couple Photo 4">
-        <img src="images/169698.jpg" alt="Couple Photo 5">
-        <img src="images/169693.jpg" alt="Couple Photo 6">
-        <img src="images/169699.jpg" alt="Couple Photo 7">
-        <img src="images/169696.jpg" alt="Couple Photo 8">
-        <img src="images/169697.jpg" alt="Couple Photo 9">
-        <img src="images/C17D691C-F527-4CA0-8B7D-98B687B37B18_1_105_c.jpeg" alt="Couple Photo 10">
-    </section>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery Items - Using placeholder images -->
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/1.jpeg" alt="Engagement Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="engagement">
+                    <img src="images/Gallery/2.jpeg" alt="Engagement Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/3.jpeg" alt="Pre-Wedding Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/4.jpeg" alt="Pre-Wedding Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/5.jpeg" alt="Travel Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/6.jpeg" alt="Travel Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/7.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/8.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/9.jpeg" alt="Engagement Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/10.jpeg" alt="Travel Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/11.jpeg" alt="Pre-Wedding Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="photoshoot">
+                    <img src="images/Gallery/12.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Marriage">
+                    <img src="images/Gallery/13.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Marriage">
+                    <img src="images/Gallery/14.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Marriage">
+                    <img src="images/Gallery/15.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Shenanigans">
+                    <img src="images/Gallery/16.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Shenanigans">
+                    <img src="images/Gallery/17.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Shenanigans">
+                    <img src="images/Gallery/18.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Shenanigans">
+                    <img src="images/Gallery/19.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Shenanigans">
+                    <img src="images/Gallery/21.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Shenanigans">
+                    <img src="images/Gallery/22.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Marriage">
+                    <img src="images/Gallery/23.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Shenanigans">
+                    <img src="images/Gallery/24.jpeg" alt="Friends Photo">
+                    <div class="gallery-item-overlay">
+                        <div class="gallery-item-title"></div>
+                        <div class="gallery-icon"><i class=""></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <section class="upload">
-        <p>Upload your photos <a href="https://drive.google.com" target="_blank">here</a></p>
-    </section>
+    <!-- Photo Modal -->
+    <div class="modal" id="photoModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <img src="" class="modal-img" id="modalImg">
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-prev" id="modalPrev"><i class="fas fa-chevron-left"></i></div>
+            <div class="modal-next" id="modalNext"><i class="fas fa-chevron-right"></i></div>
+        </div>
+    </div>
 
-    <footer>
-        <p>© 2024 Dill and Chalisa's Wedding</p>
-    </footer>
+    <script>
+        // Gallery filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
 
+        // Show gallery with animation after loading
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('gallery-grid').classList.add('loaded');
+            }, 300);
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Gallery Modal Functionality
+        const modal = document.getElementById('photoModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalCaption = document.getElementById('modalCaption');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+
+        let currentIndex = 0;
+        const visibleItems = () => Array.from(galleryItems).filter(item => item.style.display !== 'none');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const items = visibleItems();
+                currentIndex = items.indexOf(item);
+
+                const img = item.querySelector('img');
+                const title = item.querySelector('.gallery-item-title').textContent;
+
+                modalImg.src = img.src;
+                modalCaption.textContent = title;
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+
+        modalPrev.addEventListener('click', () => {
+            const items = visibleItems();
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+
+            const item = items[currentIndex];
+            const img = item.querySelector('img');
+            const title = item.querySelector('.gallery-item-title').textContent;
+
+            modalImg.src = img.src;
+            modalCaption.textContent = title;
+        });
+
+        modalNext.addEventListener('click', () => {
+            const items = visibleItems();
+            currentIndex = (currentIndex + 1) % items.length;
+
+            const item = items[currentIndex];
+            const img = item.querySelector('img');
+            const title = item.querySelector('.gallery-item-title').textContent;
+
+            modalImg.src = img.src;
+            modalCaption.textContent = title;
+        });
+
+        // Close modal when clicking outside the content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const nav = document.getElementById('nav');
+
+        mobileToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            mobileToggle.innerHTML = nav.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>

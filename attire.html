@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Wedding Attire</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff8f5;
+            color: #4f6659;
+            line-height: 1.6;
+            padding-bottom: 30px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-bottom: 3px solid #e3b8ae;
+        }
+
+        header.scrolled {
+            padding: 10px 30px;
+        }
+
+        .logo {
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled .logo {
+            height: 50px;
+        }
+
+        header h1 {
+            display: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4f6659;
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #b84c65;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #b84c65;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #4f6659;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin: 20px 0;
+            color: #b84c65;
+            font-weight: 300;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 20px;
+        }
+
+        h1::before, h1::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 1px;
+            background-color: #b84c65;
+        }
+
+        h1::before {
+            left: -60px;
+        }
+
+        h1::after {
+            right: -60px;
+        }
+
+        /* Color Palette Display */
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+
+        .color-name {
+            margin-top: 10px;
+            text-align: center;
+            color: #4f6659;
+            font-weight: 500;
+        }
+
+        /* Attire Cards */
+        .attire-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .attire-card {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .attire-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .attire-image {
+            width: 100%;
+            height: 640px;
+            object-fit: cover;
+        }
+
+        .attire-content {
+            padding: 20px;
+        }
+
+        .attire-title {
+            font-size: 22px;
+            color: #b84c65;
+            margin-bottom: 15px;
+        }
+
+        .attire-description {
+            margin-bottom: 15px;
+            color: #4f6659;
+        }
+
+        .dos-donts {
+            margin-top: 20px;
+        }
+
+        .dos-donts h4 {
+            color: #4f6659;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .dos-list, .donts-list {
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .dos-list li {
+            color: #4f6659;
+            margin-bottom: 5px;
+        }
+
+        .donts-list li {
+            color: #4f6659;
+            margin-bottom: 5px;
+        }
+
+        /* Notes Section */
+        .notes-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin: 40px 0;
+        }
+
+        .note-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .note-icon {
+            color: #b84c65;
+            font-size: 24px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .note-text {
+            color: #4f6659;
+        }
+
+        /* Inspiration Gallery */
+        .inspiration-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 12px 20px;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95);
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease, padding 0.5s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            nav.active {
+                max-height: 300px;
+                padding: 10px 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 12px 20px;
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h1::before, h1::after {
+                width: 30px;
+            }
+
+            h1::before {
+                left: -40px;
+            }
+
+            h1::after {
+                right: -40px;
+            }
+
+            .attire-section {
+                grid-template-columns: 1fr;
+            }
+
+            .color-swatch {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <img src="images/designPreview-removebg-preview.png" alt="Logo" class="logo">
+        <h1>Attire</h1>
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="attire.html">Attire</a></li>
+                <li><a href="pictures.html">Gallery</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1 class="animate__animated animate__fadeIn">Wedding Attire Guide</h1>
+
+        <p class="animate__animated animate__fadeIn" style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 18px;">
+            We're excited to celebrate with you! Here's everything you need to know about what to wear for our special day.
+        </p>
+
+        <!-- Wedding Color Palette -->
+        <h2>Our Wedding Colors</h2>
+        <div class="color-palette animate__animated animate__fadeIn">
+            <div class="color-item">
+                        <div class="color-swatch" style="background-color: #b84c65;"></div>
+                        <div class="color-name">Berry</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background-color: #c17d82;"></div>
+                        <div class="color-name">Dusty Rose</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background-color: #87958c;"></div>
+                        <div class="color-name">Sage Green</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background-color: #4f6659;"></div>
+                        <div class="color-name">Evergreen</div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background-color: #286181;"></div>
+                        <div class="color-name">Dark Teal</div>
+                    </div>
+        </div>
+
+        <!-- Dress Code Overview -->
+        <h2>Dress Code: Semi-Formal/Cocktail</h2>
+        <p class="animate__animated animate__fadeIn" style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 18px;">
+            Our wedding will be a beautiful outdoor celebration. We request semi-formal/cocktail attire that is elegant yet comfortable for an outdoor setting.
+        </p>
+
+        <!-- Attire Cards -->
+        <div class="attire-section">
+            <!-- Women's Attire -->
+            <div class="attire-card animate__animated animate__fadeIn">
+                <img src="images/attire/Women Attire.jpg" alt="Women's Attire" class="attire-image">
+                <div class="attire-content">
+                    <h3 class="attire-title">Women's Attire</h3>
+                    <p class="attire-description">
+                        We recommend cocktail dresses, elegant jumpsuits, or dressy separates. Our color palette is muted and earthy, so feel free to incorporate these tones.
+                    </p>
+                    <div class="dos-donts">
+                        <h4>Do's:</h4>
+                        <ul class="dos-list">
+                            <li>Cocktail or tea-length dresses</li>
+                            <li>Elegant jumpsuits</li>
+                            <li>Light, breathable fabrics</li>
+                            <li>Wedges or block heels (for grass areas)</li>
+                        </ul>
+                        <h4>Don'ts:</h4>
+                        <ul class="donts-list">
+                            <li>All white or ivory outfits (reserved for the bride)</li>
+                            <li>Casual sundresses or beachwear</li>
+                            <li>Stiletto heels (venue has grass areas)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Men's Attire -->
+            <div class="attire-card animate__animated animate__fadeIn">
+                <img src="images/attire/180290.jpg" alt="Men's Attire" class="attire-image">
+                <div class="attire-content">
+                    <h3 class="attire-title">Men's Attire</h3>
+                    <p class="attire-description">
+                        We recommend dress pants with a button-up shirt and tie or a suit without a tie. Jackets are optional depending on the weather.
+                    </p>
+                    <div class="dos-donts">
+                        <h4>Do's:</h4>
+                        <ul class="dos-list">
+                            <li>Dress slacks with a button-up shirt</li>
+                            <li>Ties in complementary colors</li>
+                            <li>Suits in navy, gray, or neutral tones</li>
+                            <li>Dress shoes (loafers or oxfords)</li>
+                        </ul>
+                        <h4>Don'ts:</h4>
+                        <ul class="donts-list">
+                            <li>Jeans or casual pants</li>
+                            <li>Sneakers or sandals</li>
+                            <li>T-shirts or polo shirts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Children's Attire -->
+            <div class="attire-card animate__animated animate__fadeIn">
+                <img src="images/attire/Children.jpg" alt="Children's Attire" class="attire-image">
+                <div class="attire-content">
+                    <h3 class="attire-title">Children's Attire</h3>
+                    <p class="attire-description">
+                        Children are welcome to dress in comfortable semi-formal attire. We understand comfort is key for the little ones!
+                    </p>
+                    <div class="dos-donts">
+                        <h4>Do's:</h4>
+                        <ul class="dos-list">
+                            <li>Comfortable dress clothes</li>
+                            <li>Dress shoes or nice sandals</li>
+                            <li>Clothes in wedding colors if desired</li>
+                        </ul>
+                        <h4>Don'ts:</h4>
+                        <ul class="donts-list">
+                            <li>Uncomfortable formal wear</li>
+                            <li>Athletic shoes or flip flops</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Important Notes -->
+        <h2>Important Notes</h2>
+        <div class="notes-section animate__animated animate__fadeIn">
+            <div class="note-item">
+                <div class="note-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="note-text">
+                    <strong>Weather Considerations:</strong> Garden party. Think light, breezy, and celebratory!
+                </div>
+            </div>
+            <div class="note-item">
+                <div class="note-icon">
+                    <i class="fas fa-shoe-prints"></i>
+                </div>
+                <div class="note-text">
+                    <strong>Venue Terrain:</strong> Please note that the events will take place outdoors, which includes lawn games! We recommend wearing comfortable shoes (e.g., block heels or flats) suitable for grass or uneven ground
+                </div>
+            </div>
+            <div class="note-item">
+                <div class="note-icon">
+                    <i class="fas fa-temperature-high"></i>
+                </div>
+                <div class="note-text">
+                    <strong>Comfort First:</strong> Bring your swimsuit and a change of clothes if you'd like to dip in the pool after dinner—towels provided
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Questions Section -->
+        <div class="notes-section animate__animated animate__fadeIn">
+            <h2 style="margin-top: 0;">Still Have Questions?</h2>
+            <p style="text-align: center; margin-bottom: 20px;">
+                If you're unsure about what to wear or have any specific questions, please don't hesitate to reach out to us!
+            </p>
+            <div style="text-align: center;">
+                <a href="mailto:wedding@example.com" style="display: inline-block; background-color: #b84c65; color: white; padding: 12px 25px; text-decoration: none; border-radius: 30px; font-weight: 600; transition: all 0.3s ease;">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            document.getElementById('nav').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav');
+            const toggle = document.getElementById('mobile-toggle');
+
+            if (!nav.contains(event.target) && !toggle.contains(event.target) && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
