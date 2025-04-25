@@ -436,11 +436,11 @@ h1::after {
         <div class="header-right">
             <nav id="nav">
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="schedule.html">Schedule</a></li>
-                    <li><a href="attire.html">Attire</a></li>
-                    <li><a href="pictures.html">Gallery</a></li>
-                    <li><a href="rsvp.html" class="active">RSVP</a></li>
+                    <li><a href="home-th.html">หน้าแรก</a></li>
+                <li><a href="schedule-th.html">กำหนดการ</a></li>
+                <li><a href="attire-th.html">การแต่งกาย</a></li>
+                <li><a href="pictures-th.html">แกลเลอรี่</a></li>
+                <li><a href="rsvp-th.html" class="active">ตอบรับคำเชิญ</a></li>
                 </ul>
             </nav>
             <div class="language-switch" id="language-switch">
@@ -450,11 +450,11 @@ h1::after {
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="language-dropdown">
-                    <a href="home.html" class="language-option">
+                    <a href="rsvp.html" class="language-option">
                         <img src="images/png/9.png" alt="English">
                         <span>English</span>
                     </a>
-                    <a href="home-th.html" class="language-option">
+                    <a href="rsvp-th.html" class="language-option">
                         <img src="images/png/10.png" alt="Thai">
                         <span>ไทย</span>
                     </a>
@@ -498,6 +498,25 @@ h1::after {
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+
+         // Mobile menu toggle
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            document.getElementById('nav').classList.toggle('active');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Language switcher
+        document.getElementById('language-switch').addEventListener('click', function(e) {
+            this.classList.toggle('active');
+            e.stopPropagation();
+        });
+
+        // Close language dropdown when clicking elsewhere
+        document.addEventListener('click', function() {
+            document.getElementById('language-switch').classList.remove('active');
         });
     </script>
 </body>

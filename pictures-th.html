@@ -667,66 +667,65 @@
 </head>
 <body>
     <header id="header">
-        <div class="header-left">
-            <img src="images/designPreview-removebg-preview.png" alt="Logo" class="logo">
-            <div class="header-title">Dill & Chalisa</div>
-        </div>
-        <div class="header-right">
-            <nav id="nav">
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="schedule.html">Schedule</a></li>
-                    <li><a href="attire.html">Attire</a></li>
-                    <li><a href="pictures.html" class="active">Gallery</a></li>
-                    <li><a href="rsvp.html">RSVP</a></li>
-                </ul>
-            </nav>
-            <div class="language-switch" id="language-switch">
-                <div class="language-current">
+    <div class="header-left">
+        <img src="images/designPreview-removebg-preview.png" alt="โลโก้" class="logo">
+        <div class="header-title">Dill & Chalisa</div>
+    </div>
+    <div class="header-right">
+        <nav id="nav">
+            <ul>
+                <li><a href="home-th.html">หน้าแรก</a></li>
+                <li><a href="schedule-th.html">กำหนดการ</a></li>
+                <li><a href="attire-th.html">การแต่งกาย</a></li>
+                <li><a href="pictures-th.html" class="active">แกลเลอรี่</a></li>
+                <li><a href="rsvp-th.html">ตอบรับคำเชิญ</a></li>
+            </ul>
+        </nav>
+        <div class="language-switch" id="language-switch">
+            <div class="language-current">
+                <img src="images/png/10.png" alt="Thai">
+                <span>TH</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="language-dropdown">
+                <a href="home.html" class="language-option">
                     <img src="images/png/9.png" alt="English">
-                    <span>EN</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="language-dropdown">
-                    <a href="pictures.html" class="language-option">
-                        <img src="images/png/9.png" alt="English">
-                        <span>English</span>
-                    </a>
-                    <a href="pictures-th.html" class="language-option">
-                        <img src="images/png/10.png" alt="Thai">
-                        <span>ไทย</span>
-                    </a>
-                </div>
-            </div>
-            <div class="mobile-toggle" id="mobile-toggle">
-                <i class="fas fa-bars"></i>
+                    <span>English</span>
+                </a>
+                <a href="home-th.html" class="language-option">
+                    <img src="images/png/10.png" alt="Thai">
+                    <span>ไทย</span>
+                </a>
             </div>
         </div>
-    </header>
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
 
-    <div class="container">
-        <h1 class="animate__animated animate__fadeIn">Our Photo Gallery</h1>
+<div class="container">
+    <h1 class="animate__animated animate__fadeIn">แกลเลอรี่ภาพของเรา</h1>
 
-        <div class="upload-section animate__animated animate__fadeIn">
-            <h3 class="upload-title">Share Your Memories With Us</h3>
-            <p class="upload-instructions">
-                Help us create a beautiful gallery of memories by sharing your photos! Upload your favorite moments from our engagement party, pre-wedding events, or any special moments we've shared together.
-            </p>
-            <div class="upload-buttons">
-               <a href="https://drive.google.com/drive/folders/1496HuhdIN1qFYHmH4SB-ctkbLUsaU3Li" class="upload-btn">
-               <i class="fas fa-cloud-upload-alt"></i> Upload Photos
+    <div class="upload-section animate__animated animate__fadeIn">
+        <h3 class="upload-title">แชร์ภาพความทรงจำกับเรา</h3>
+        <p class="upload-instructions">
+            ช่วยเราสร้างแกลเลอรี่ความทรงจำที่สวยงามด้วยการแบ่งปันภาพถ่ายของคุณ! อัปโหลดภาพช่วงเวลาที่คุณชื่นชอบจากงานหมั้น งานก่อนแต่งงาน หรือช่วงเวลาพิเศษใด ๆ ที่เรามีร่วมกัน
+        </p>
+        <div class="upload-buttons">
+            <a href="https://drive.google.com/drive/folders/1496HuhdIN1qFYHmH4SB-ctkbLUsaU3Li" class="upload-btn">
+                <i class="fas fa-cloud-upload-alt"></i> อัปโหลดรูปภาพ
             </a>
-</div>
-
         </div>
+    </div>
 
-        <div class="gallery-container">
-            <div class="gallery-filter animate__animated animate__fadeIn">
-                <button class="filter-btn active" data-filter="all">All Photos</button>
-                <button class="filter-btn" data-filter="photoshoot">Photoshoot</button>
-                <button class="filter-btn" data-filter="Marriage">Marriage</button>
-                <button class="filter-btn" data-filter="Shenanigans">Shenanigans</button>
-            </div>
+    <div class="gallery-container">
+        <div class="gallery-filter animate__animated animate__fadeIn">
+            <button class="filter-btn active" data-filter="all">ภาพทั้งหมด</button>
+            <button class="filter-btn" data-filter="photoshoot">ภาพถ่ายพรีเวดดิ้ง</button>
+            <button class="filter-btn" data-filter="Marriage">พิธีแต่งงาน</button>
+            <button class="filter-btn" data-filter="Shenanigans">ช่วงเวลาสนุก ๆ</button>
+        </div>
 
             <div class="gallery-grid" id="gallery-grid">
                 <!-- Gallery Items - Using placeholder images -->
