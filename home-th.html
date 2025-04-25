@@ -676,9 +676,9 @@
         }
 
         .color-swatch {
-            width: 100%;
+            width: 40px;
             height: 40px;
-            border-radius: 6px;
+            border-radius: 50%;  /* Changed to 50% to make circles */
             margin-bottom: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
@@ -752,12 +752,15 @@
             }
 
             .color-palette {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;  /* Keep in one line */
+                padding: 4px 2px;   /* Adjust padding */
+                justify-content: flex-start; /* Start from left */
             }
 
             .color-item {
-                flex: 0 0 48%;
-                margin-bottom: 8px;
+                flex: 0 0 auto;     /* Don't grow or shrink */
+                margin-right: 8px;  /* Add space between items */
+                min-width: 25px;    /* Minimum width */
             }
         }
     </style>
